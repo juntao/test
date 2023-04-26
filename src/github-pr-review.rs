@@ -102,7 +102,7 @@ async fn handler(
     let octo = get_octo(Some(String::from(login)));
 
     let issues = octo.issues(owner, repo);
-    let mut comment_id: CommentId = 0u64.into();
+    let comment_id: CommentId;
     if new_commit {
         // Find the first "Hello, I am a [code review bot]" comment to update
         match issues.list_comments(pull_number).send().await {
