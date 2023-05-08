@@ -5,7 +5,7 @@ use std::env;
 #[no_mangle]
 pub fn run() {
     let openai_key_name: String = match env::var("openai_key_name") {
-        Err(_) => "chatmichael".to_string(),
+        Err(_) => "gpt4".to_string(),
         Ok(name) => name,
     };
 
