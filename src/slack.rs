@@ -1,11 +1,9 @@
 use slack_flows::{listen_to_channel, send_message_to_channel};
 use openai_flows::{chat_completion, ChatOptions};
 use std::env;
-use dotenv::dotenv;
 
 #[no_mangle]
 pub fn run() {
-    dotenv().ok();
     let workspace: String = match env::var("workspace") {
         Err(_) => "secondstate".to_string(),
         Ok(name) => name,
