@@ -4,19 +4,9 @@ use std::env;
 
 #[no_mangle]
 pub fn run() {
-    let workspace: String = match env::var("workspace") {
-        Err(_) => "secondstate".to_string(),
-        Ok(name) => name,
-    };
-
-    let channel: String = match env::var("channel") {
-        Err(_) => "collaborative-chat".to_string(),
-        Ok(name) => name,
-    };
-    let openai_key_name: String = match env::var("openai_key_name") {
-        Err(_) => "gpt4".to_string(),
-        Ok(name) => name,
-    };
+    let workspace = env::var("workspace").unwrap_or_else(|_| "secondstate".to_string());
+    let channel = env::var("channel").unwrap_or_else(|_| "collaborative-chat".to_string());
+    let openai_key_name = env::var("openai_key_name").unwrap_or_else(|_| "gpt4".to_string());
 
     listen_to_channel(&workspace, &channel, |sm| {
         let chat_id = workspace.clone() + &channel;
